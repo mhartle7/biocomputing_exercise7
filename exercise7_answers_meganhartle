@@ -27,16 +27,16 @@ print(number_observations(data))
 
 #Answer to #2 part 2
 
-min_width = 3.0
+def sepal_width(min_width):
+    return(data[data['Sepal.Width'] > min_width].groupby('Species')['Sepal.Width'].count())
 
-def sepal_width(file):
-    return(file[file['Sepal.Width'] > min_width].groupby('Species')['Sepal.Width'].count())
-
-print(sepal_width(data))
+print(sepal_width(3.5))
 
 #Answer to #2 part 3
 
-def species_file(file, species): # given file and name of species as inputs
-	data = file[file.Species == species] # get data of specific species
-	new_file = species + "_file.csv" # create file name according to species
-	return(data.to_csv(new_file)) # return csv
+def species_file(file, species):
+	data = file[file.Species == species]
+	new_file = species + "_file.csv"
+	return(data.to_csv(new_file)) 
+
+print(species_file(data, 'virginica'))
